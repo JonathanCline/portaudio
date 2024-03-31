@@ -172,7 +172,7 @@ if(WIN32)
   set(PORTAUDIO_PUBLIC_HEADERS "${PORTAUDIO_PUBLIC_HEADERS}" include/pa_win_waveformat.h)
   target_link_libraries(PortAudio PRIVATE winmm)
 
-  if(MSVC)
+  if(WIN32)
     target_sources(PortAudio PRIVATE src/os/win/pa_x86_plain_converters.c)
   else()
     target_compile_definitions(PortAudio PRIVATE _WIN32_WINNT=0x0501 WINVER=0x0501)
@@ -244,7 +244,7 @@ if(WIN32)
       target_compile_definitions(PortAudio PRIVATE PAWIN_USE_DIRECTSOUNDFULLDUPLEXCREATE)
     endif()
   endif()
-
+ 
   option(PA_USE_WMME "Enable support for WMME" ON)
   if(PA_USE_WMME)
     target_sources(PortAudio PRIVATE src/hostapi/wmme/pa_win_wmme.c)
